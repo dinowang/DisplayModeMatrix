@@ -12,6 +12,18 @@ Theme (optional) : Dark | Default (empty suffix)
 
 Preview (optional) : Preview | No Preview (empty suffix)
 
+### DisplayModeMatrixBuilder
+
+```csharp
+var builder = new DisplayModeMatrixBuilder();
+
+var matrix = builder
+                .AddOptionalLayer("Device", l => l.Suffix("Mobile", x => IsMobile(x)).Suffix("Tablet", x => IsTablet(x)))
+                .AddOptionalLayer("Theme", l => l.Suffix("Dark", x => CurrentTheme(x) == "dark"))
+                .AddOptionalLayer("Preview", l => l.Suffix("Preview", x => IsPreview(x)))
+                .Build();
+```
+
 ### 組合及順序
 
 - Mobile-Dark-Preview
