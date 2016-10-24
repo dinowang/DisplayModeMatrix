@@ -10,7 +10,7 @@ namespace DisplayModeMatrix.Web
     {
         public static void Register(DisplayModeProvider instance)
         {
-            var builder = new DisplayModelMatrixBuilder();
+            var builder = new DisplayModeMatrixBuilder();
 
             var matrix = builder
                             .AddOptionalLayer("Device", l => l.Suffix("Mobile", x => IsMobile(x)).Suffix("Tablet", x => IsTablet(x)))
