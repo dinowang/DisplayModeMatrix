@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace DisplayModeMatrix
 {
-    public class Hierarchy
+    public class Layer
     {
         public string Key { get; set; }
 
@@ -13,9 +13,9 @@ namespace DisplayModeMatrix
 
         public NamedCondition this[string name] => Values.First(x => x.Name == name);
 
-        public static Hierarchy Create(string key, bool required, IEnumerable<NamedCondition> values)
+        public static Layer Create(string key, bool required, IEnumerable<NamedCondition> values)
         {
-            return new Hierarchy { Key = key, Required = required, Values = values };
+            return new Layer { Key = key, Required = required, Values = values };
         }
     }
 }

@@ -41,8 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hierarchy.cs" />
-    <Compile Include="IEnumerableHierarchyExtensions.cs" />
+    <Compile Include="DisplayModelMatrixBuilder.cs" />
+    <Compile Include="Layer.cs" />
+    <Compile Include="IEnumerableLayerExtensions.cs" />
     <Compile Include="NamedCondition.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

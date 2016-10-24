@@ -10,31 +10,22 @@ namespace DisplayModeMatrix.Web
     {
         public static void Register(DisplayModeProvider instance)
         {
-            var hierarchies = new[]
-            {
-                Hierarchy.Create("Device", false, new []
-                {
-                    new NamedCondition { Name = "Mobile", Expression = x => IsMobile(x), Weight = 3 },
-                    new NamedCondition { Name = "Tablet", Expression = x => IsTablet(x), Weight = 3 }
-                }),
-                Hierarchy.Create("Theme", false, new []
-                {
-                    new NamedCondition { Name = "Dark", Expression = x => CurrentTheme(x) == "dark", Weight = 2 },
-                }),
-                Hierarchy.Create("Preview", false, new []
-                {
-                    new NamedCondition { Name = "Preview", Expression = x => IsPreview(x), Weight = 1 },
-                }),
-            };
+            var builder = new DisplayModelMatrixBuilder();
 
-            foreach (var permutation in hierarchies.Permutation().OrderByDescending(x => x.Weight).Distinct())
+            var matrix = builder
+                            .AddOptionalLayer("Device", l => l.Suffix("Mobile", x => IsMobile(x)).Suffix("Tablet", x => IsTablet(x)))
+                            .AddOptionalLayer("Theme", l => l.Suffix("Dark", x => CurrentTheme(x) == "dark"))
+                            .AddOptionalLayer("Preview", l => l.Suffix("Preview", x => IsPreview(x)))
+                            .Build();
+
+            foreach (var composition in matrix)
             {
-                instance.Modes.Add(new DefaultDisplayMode(permutation.Name)
+                instance.Modes.Add(new DefaultDisplayMode(composition.Name)
                 {
-                    ContextCondition = x => permutation.Expression.Compile().Invoke(x)
+                    ContextCondition = x => composition.Expression.Compile().Invoke(x)
                 });
 
-                Debug.WriteLine($"{permutation.Name}, {permutation.Weight} => {permutation.Expression}");
+                Debug.WriteLine($"{composition.Name}, {composition.Weight} => {composition.Expression}");
             }
         }
 

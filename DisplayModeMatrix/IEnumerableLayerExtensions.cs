@@ -6,9 +6,9 @@ using System.Web;
 
 namespace DisplayModeMatrix
 {
-    public static class IEnumerableHierarchyExtensions
+    public static class IEnumerableLayerExtensions
     {
-        public static IEnumerable<NamedCondition> Permutation(this IEnumerable<Hierarchy> source)
+        public static IEnumerable<NamedCondition> Permutation(this IEnumerable<Layer> source)
         {
             var level = source.First();
             var next = source.Skip(1);
