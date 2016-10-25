@@ -57,6 +57,15 @@ foreach (var profile in matrix)
 }
 ```
 
+### Benchmarking
+
+|                     | Apply DisplayModeMatrixBuilder |     Without Display Modes     |
+|---------------------|--------------------------------|-------------------------------|
+| SuperBenchmarker    | TPS: 133.2 (requests/second)   | TPS: 135.3 (requests/second)  |
+| -n 1000 -c 10       | Max: 6018.8998ms               | Max: 6160.7143ms              |
+|                     | Min: 2.4041ms                  | Min: 2.3731ms                 |
+|                     | Avg: 67.8596257ms              | Avg: 67.777162ms              |
+
 ## TODO:
 
 - Performance impact comparing test. (DisplayModeMatrixBuilder | Manual | Without Display Modes)
