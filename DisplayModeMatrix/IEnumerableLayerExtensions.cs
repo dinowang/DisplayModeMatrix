@@ -34,7 +34,7 @@ namespace DisplayModeMatrix
                             {
                                 Name = $"{t.Name}-{x.Name}",
                                 Expression = Expression.Lambda<Func<HttpContextBase, bool>>(body, parameter),
-                                Weight = t.Weight + x.Weight + 0.5
+                                Weight = t.Weight + x.Weight + 0.1
                             };
                         }
                     }
