@@ -37,7 +37,6 @@ namespace DisplayModeMatrix.Test
                 "Mobile-Preview",
                 "Tablet-Preview",
                 "Dark-Preview",
-                "Dark-Preview",
                 "Mobile",
                 "Tablet",
                 "Dark",

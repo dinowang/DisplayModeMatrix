@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DisplayModeMatrix
 {
-    public class Evidence : IEqualityComparer<Evidence>
+    public class Evidence : IEquatable<Evidence>
     {
         public string Name { get; set; }
 
@@ -15,8 +15,10 @@ namespace DisplayModeMatrix
 
         public override string ToString() => $"{Name}, {Weight}: {Expression}";
 
-        public bool Equals(Evidence a, Evidence b) => a.Name.Equals(b.Name);
+        public bool Equals(Evidence another) 
+            => Name == another.Name;
 
-        public int GetHashCode(Evidence c) => c.Name.GetHashCode();
+        public override int GetHashCode() 
+            => Name.GetHashCode();
     }
 }
