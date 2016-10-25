@@ -24,7 +24,6 @@ DisplayModeMatrix is used to extend the compoundability of a single dimension AS
 - Mobile-Preview
 - Tablet-Preview
 - Dark-Preview
-- Dark-Preview
 - Mobile
 - Tablet
 - Dark
