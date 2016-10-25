@@ -8,8 +8,10 @@ namespace DisplayModeMatrix
     public class NamedCondition : IEqualityComparer<NamedCondition>
     {
         public string Name { get; set; }
+
         public Expression<Func<HttpContextBase, bool>> Expression { get; set; }
-        public double Weight { get; set; }
+
+        internal double Weight { get; set; }
 
         public override string ToString() => $"{Name}, {Weight}: {Expression}";
 

@@ -10,37 +10,37 @@ namespace DisplayModeMatrix
     {
         public static IEnumerable<NamedCondition> Permutation(this IEnumerable<Layer> source)
         {
-            var level = source.First();
-            var next = source.Skip(1);
+            var layer = source.First();
+            var nextLayers = source.Skip(1);
 
-            if (next.Any())
+            if (nextLayers.Any())
             {
-                foreach (var t in level.Values)
+                foreach (var set in layer.Values)
                 {
-                    foreach (var x in next.Permutation())
+                    foreach (var childSet in nextLayers.Permutation())
                     {
-                        if (x == null)
+                        if (childSet == null)
                         {
-                            yield return t;
+                            yield return set;
                         }
                         else
                         {
                             var parameter = Expression.Parameter(typeof(HttpContextBase), "x");
                             var body = Expression.AndAlso(
-                                            Expression.Invoke(t.Expression, parameter), 
-                                            Expression.Invoke(x.Expression, parameter));
+                                            Expression.Invoke(set.Expression, parameter), 
+                                            Expression.Invoke(childSet.Expression, parameter));
 
                             yield return new NamedCondition
                             {
-                                Name = $"{t.Name}-{x.Name}",
+                                Name = $"{set.Name}-{childSet.Name}",
                                 Expression = Expression.Lambda<Func<HttpContextBase, bool>>(body, parameter),
-                                Weight = t.Weight + x.Weight + 0.1
+                                Weight = set.Weight + childSet.Weight + 0.1
                             };
                         }
                     }
-                    if (level.Required == false)
+                    if (layer.Required == false)
                     {
-                        foreach (var x in next.Permutation())
+                        foreach (var x in nextLayers.Permutation())
                         {
                             yield return x;
                         }
@@ -49,12 +49,12 @@ namespace DisplayModeMatrix
             }
             else
             {
-                foreach (var x in level.Values)
+                foreach (var set in layer.Values)
                 {
-                    yield return x;
+                    yield return set;
                 }
 
-                if (level.Required == false)
+                if (layer.Required == false)
                 {
                     yield return null;
                 }

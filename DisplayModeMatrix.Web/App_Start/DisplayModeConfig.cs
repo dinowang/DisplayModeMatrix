@@ -18,14 +18,12 @@ namespace DisplayModeMatrix.Web
                             .AddOptionalLayer("Preview", l => l.Suffix("Preview", x => IsPreview(x)))
                             .Build();
 
-            foreach (var composition in matrix)
+            foreach (var profile in matrix)
             {
-                instance.Modes.Add(new DefaultDisplayMode(composition.Name)
+                instance.Modes.Add(new DefaultDisplayMode(profile.Name)
                 {
-                    ContextCondition = x => composition.Expression.Compile().Invoke(x)
+                    ContextCondition = x => profile.ContextCondition(x)
                 });
-
-                Debug.WriteLine($"{composition.Name}, {composition.Weight} => {composition.Expression}");
             }
         }
 

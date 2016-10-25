@@ -38,24 +38,29 @@ namespace DisplayModeMatrix
             return this;
         }
 
-        public IEnumerable<NamedCondition> Build()
+        public IEnumerable<DisplayModeProfile> Build()
         {
             var weight = _layers.Count;
 
-            foreach (var h in _layers)
+            foreach (var layer in _layers)
             {
-                foreach (var value in h.Values)
+                foreach (var value in layer.Values)
                 {
                     value.Weight = weight;
                 }
                 weight--;
             }
 
-            var permutation = _layers.Permutation();
-
-            var result = permutation.Where(x => x != null).OrderByDescending(x => x.Weight).Distinct();
-
-            return result;
+            return _layers
+                        .Permutation()
+                        .Where(x => x != null)
+                        .OrderByDescending(x => x.Weight)
+                        .Distinct()
+                        .Select(x => new DisplayModeProfile
+                        {
+                            Name = x.Name,
+                            ContextCondition = x.Expression.Compile()
+                        });
         }
 
         public class LayerBuilder
