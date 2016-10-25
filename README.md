@@ -34,6 +34,8 @@ var matrix = builder
 - Tablet-Preview
 - Dark-Preview
 - Dark-Preview
+- Mobile
+- Tablet
 - Dark
 - Preview
 
