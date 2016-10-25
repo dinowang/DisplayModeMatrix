@@ -33,6 +33,12 @@ Inspired from Android, see [How Android Finds the Best-matching Resource](https:
 
 The string of combination used to match Display Modes mechanism.
 
+### Views structure
+
+So you can organize MVC View (.cshtml) with Display Modes more flexible.
+
+![Views structure](screenshot/views-structure.png)
+
 ### Use the DisplayModeMatrixBuilder to create a list of Display Modes
 
 ```csharp
