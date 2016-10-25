@@ -8,50 +8,50 @@ namespace DisplayModeMatrix
 {
     public class DisplayModeMatrixBuilder
     {
-        private List<Layer> _layers = new List<Layer>();
+        private List<Factor> _factors = new List<Factor>();
 
-        public DisplayModeMatrixBuilder AddOptionalLayer(string name, Action<LayerBuilder> register)
+        public DisplayModeMatrixBuilder AddOptionalFactor(string name, Action<FactorBuilder> register)
         {
-            return AddLayer(name, false, register);
+            return AddFactor(name, false, register);
         }
 
-        public DisplayModeMatrixBuilder AddRequiredLayer(string name, Action<LayerBuilder> register)
+        public DisplayModeMatrixBuilder AddRequiredFactor(string name, Action<FactorBuilder> register)
         {
-            return AddLayer(name, true, register);
+            return AddFactor(name, true, register);
         }
 
-        public DisplayModeMatrixBuilder AddLayer(string name, bool required, Action<LayerBuilder> register)
+        public DisplayModeMatrixBuilder AddFactor(string name, bool required, Action<FactorBuilder> register)
         {
-            var layerBuilder = new LayerBuilder(_layers.Count + 1);
+            var factorBuilder = new FactorBuilder(_factors.Count + 1);
 
-            register(layerBuilder);
+            register(factorBuilder);
 
-            var hierarchy = new Layer()
+            var hierarchy = new Factor()
             {
                 Key = name,
                 Required = required,
-                Values = layerBuilder.NamedConditions
+                Values = factorBuilder.Evidences
             };
 
-            _layers.Add(hierarchy);
+            _factors.Add(hierarchy);
 
             return this;
         }
 
         public IEnumerable<DisplayModeProfile> Build()
         {
-            var weight = _layers.Count;
+            var weight = _factors.Count;
 
-            foreach (var layer in _layers)
+            foreach (var factor in _factors)
             {
-                foreach (var value in layer.Values)
+                foreach (var value in factor.Values)
                 {
                     value.Weight = weight;
                 }
                 weight--;
             }
 
-            return _layers
+            return _factors
                         .Permutation()
                         .Where(x => x != null)
                         .OrderByDescending(x => x.Weight)
@@ -63,27 +63,27 @@ namespace DisplayModeMatrix
                         });
         }
 
-        public class LayerBuilder
+        public class FactorBuilder
         {
             private readonly int _weight;
 
-            public List<NamedCondition> NamedConditions = new List<NamedCondition>();
+            public List<Evidence> Evidences = new List<Evidence>();
 
-            internal LayerBuilder(int weight)
+            internal FactorBuilder(int weight)
             {
                 _weight = weight;
             }
 
-            public LayerBuilder Suffix(string name, Expression<Func<HttpContextBase, bool>> expression)
+            public FactorBuilder Evidence(string name, Expression<Func<HttpContextBase, bool>> expression)
             {
-                var namedExpression = new NamedCondition
+                var evidence = new Evidence
                 {
                     Name = name,
                     Expression = expression,
                     Weight = _weight
                 };
 
-                NamedConditions.Add(namedExpression);
+                Evidences.Add(evidence);
 
                 return this;
             }

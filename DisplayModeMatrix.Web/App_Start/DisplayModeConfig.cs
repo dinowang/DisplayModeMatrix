@@ -14,9 +14,9 @@ namespace DisplayModeMatrix.Web
             var builder = new DisplayModeMatrixBuilder();
 
             var matrix = builder
-                            .AddOptionalLayer("Device", l => l.Suffix("Mobile", x => IsMobile(x)).Suffix("Tablet", x => IsTablet(x)))
-                            .AddOptionalLayer("Theme", l => l.Suffix("Dark", x => CurrentTheme(x) == "dark"))
-                            .AddOptionalLayer("Preview", l => l.Suffix("Preview", x => IsPreview(x)))
+                            .AddOptionalFactor("Device", l => l.Evidence("Mobile", x => IsMobile(x)).Evidence("Tablet", x => IsTablet(x)))
+                            .AddOptionalFactor("Theme", l => l.Evidence("Dark", x => CurrentTheme(x) == "dark"))
+                            .AddOptionalFactor("Preview", l => l.Evidence("Preview", x => IsPreview(x)))
                             .Build();
             
             instance.Modes.Clear();
@@ -25,7 +25,7 @@ namespace DisplayModeMatrix.Web
             {
                 instance.Modes.Add(new DefaultDisplayMode(profile.Name)
                 {
-                    ContextCondition = x => profile.ContextCondition(x)
+                    ContextCondition = profile.ContextCondition
                 });
             }
             

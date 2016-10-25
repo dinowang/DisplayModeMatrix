@@ -6,9 +6,9 @@ using System.Web;
 
 namespace DisplayModeMatrix
 {
-    public static class IEnumerableLayerExtensions
+    public static class IEnumerableFactorExtensions
     {
-        public static IEnumerable<NamedCondition> Permutation(this IEnumerable<Layer> source)
+        public static IEnumerable<Evidence> Permutation(this IEnumerable<Factor> source)
         {
             var layer = source.First();
             var nextLayers = source.Skip(1);
@@ -30,7 +30,7 @@ namespace DisplayModeMatrix
                                             Expression.Invoke(set.Expression, parameter), 
                                             Expression.Invoke(childSet.Expression, parameter));
 
-                            yield return new NamedCondition
+                            yield return new Evidence
                             {
                                 Name = $"{set.Name}-{childSet.Name}",
                                 Expression = Expression.Lambda<Func<HttpContextBase, bool>>(body, parameter),

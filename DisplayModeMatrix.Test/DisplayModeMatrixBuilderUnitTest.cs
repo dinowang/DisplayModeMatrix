@@ -14,9 +14,9 @@ namespace DisplayModeMatrix.Test
             var builder = new DisplayModeMatrixBuilder();
 
             var matrix = builder
-                            .AddOptionalLayer("Device", l => l.Suffix("Mobile", x => true).Suffix("Tablet", x => true))
-                            .AddOptionalLayer("Theme", l => l.Suffix("Dark", x => true))
-                            .AddOptionalLayer("Preview", l => l.Suffix("Preview", x => true))
+                            .AddOptionalFactor("Device", l => l.Evidence("Mobile", x => true).Evidence("Tablet", x => true))
+                            .AddOptionalFactor("Theme", l => l.Evidence("Dark", x => true))
+                            .AddOptionalFactor("Preview", l => l.Evidence("Preview", x => true))
                             .Build();
 
             //Act

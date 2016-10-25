@@ -43,9 +43,9 @@
   <ItemGroup>
     <Compile Include="DisplayModeMatrixBuilder.cs" />
     <Compile Include="DisplayModeProfile.cs" />
-    <Compile Include="Layer.cs" />
-    <Compile Include="IEnumerableLayerExtensions.cs" />
-    <Compile Include="NamedCondition.cs" />
+    <Compile Include="Factor.cs" />
+    <Compile Include="IEnumerableFactorExtensions.cs" />
+    <Compile Include="Evidence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
