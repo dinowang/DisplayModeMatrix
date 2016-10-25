@@ -9,9 +9,9 @@ namespace DisplayModeMatrix
     {
         public string Name { get; set; }
         public Expression<Func<HttpContextBase, bool>> Expression { get; set; }
-        public int Weight { get; set; }
+        public double Weight { get; set; }
 
-        public override string ToString() => $"{Name}: {Expression}";
+        public override string ToString() => $"{Name}, {Weight}: {Expression}";
 
         public bool Equals(NamedCondition a, NamedCondition b) => a.Name.Equals(b.Name);
 

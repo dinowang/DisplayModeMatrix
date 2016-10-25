@@ -34,7 +34,7 @@ namespace DisplayModeMatrix
                             {
                                 Name = $"{t.Name}-{x.Name}",
                                 Expression = Expression.Lambda<Func<HttpContextBase, bool>>(body, parameter),
-                                Weight = t.Weight + x.Weight
+                                Weight = t.Weight + x.Weight + 0.5
                             };
                         }
                     }
@@ -42,8 +42,6 @@ namespace DisplayModeMatrix
                     {
                         foreach (var x in next.Permutation())
                         {
-                            if (x == null) continue;
-
                             yield return x;
                         }
                     }

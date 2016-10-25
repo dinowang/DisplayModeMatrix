@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplayModeMatrix.Web", "Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplayModeMatrix", "DisplayModeMatrix\DisplayModeMatrix.csproj", "{E5B68F4E-7B76-4E3C-99C0-73AFB4C45314}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DisplayModeMatrix.Test", "DisplayModeMatrix.Test\DisplayModeMatrix.Test.csproj", "{86FC1CA1-44B1-45EE-886A-5093E22B1294}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E5B68F4E-7B76-4E3C-99C0-73AFB4C45314}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5B68F4E-7B76-4E3C-99C0-73AFB4C45314}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5B68F4E-7B76-4E3C-99C0-73AFB4C45314}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86FC1CA1-44B1-45EE-886A-5093E22B1294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86FC1CA1-44B1-45EE-886A-5093E22B1294}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86FC1CA1-44B1-45EE-886A-5093E22B1294}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86FC1CA1-44B1-45EE-886A-5093E22B1294}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,21 +6,21 @@ using System.Web;
 
 namespace DisplayModeMatrix
 {
-    public class DisplayModelMatrixBuilder
+    public class DisplayModeMatrixBuilder
     {
         private List<Layer> _layers = new List<Layer>();
 
-        public DisplayModelMatrixBuilder AddOptionalLayer(string name, Action<LayerBuilder> register)
+        public DisplayModeMatrixBuilder AddOptionalLayer(string name, Action<LayerBuilder> register)
         {
             return AddLayer(name, false, register);
         }
 
-        public DisplayModelMatrixBuilder AddRequiredLayer(string name, Action<LayerBuilder> register)
+        public DisplayModeMatrixBuilder AddRequiredLayer(string name, Action<LayerBuilder> register)
         {
             return AddLayer(name, true, register);
         }
 
-        public DisplayModelMatrixBuilder AddLayer(string name, bool required, Action<LayerBuilder> register)
+        public DisplayModeMatrixBuilder AddLayer(string name, bool required, Action<LayerBuilder> register)
         {
             var layerBuilder = new LayerBuilder(_layers.Count + 1);
 
@@ -51,7 +51,11 @@ namespace DisplayModeMatrix
                 weight--;
             }
 
-            return _layers.Permutation().OrderByDescending(x => x.Weight).Distinct();
+            var permutation = _layers.Permutation();
+
+            var result = permutation.Where(x => x != null).OrderByDescending(x => x.Weight).Distinct();
+
+            return result;
         }
 
         public class LayerBuilder
