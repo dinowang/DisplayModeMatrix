@@ -4,7 +4,7 @@ DisplayModeMatrix is used to extend the compoundability of a single dimension AS
 
 ## Example
 
-### Multiple optional dimensions
+### Given a multiple optional factors, every factor has possible values
 
 - **Device**, optional :  
   Mobile | Tablet | Default (empty suffix)
@@ -15,7 +15,7 @@ DisplayModeMatrix is used to extend the compoundability of a single dimension AS
 - **Preview**, optional :  
   Preview | No Preview (empty suffix)
 
-### Expected combination and sequence
+### Expected factor combination and sequencing result
 
 - Mobile-Dark-Preview
 - Tablet-Dark-Preview
@@ -29,6 +29,8 @@ DisplayModeMatrix is used to extend the compoundability of a single dimension AS
 - Tablet
 - Dark
 - Preview
+
+The string of combination used to match Display Modes mechanism.
 
 ### Use the DisplayModeMatrixBuilder to create a list of Display Modes
 
