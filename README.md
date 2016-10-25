@@ -61,7 +61,7 @@ foreach (var profile in matrix)
 
 ### Benchmarking
 
-SuperBenchmarker (-n 1000 -c 10)
+[SuperBenchmarker](https://github.com/aliostad/SuperBenchmarker) (-n 1000 -c 10)
 
 |                     | Apply DisplayModeMatrixBuilder |     Without Display Modes     |
 |---------------------|--------------------------------|-------------------------------|
