@@ -2,6 +2,8 @@
 
 DisplayModeMatrix is used to extend the compoundability of a single dimension ASP.NET MVC Display Modes.
 
+Inspired from Android, see [How Android Finds the Best-matching Resource](https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch)
+
 ## Example
 
 ### Given a multiple optional factors, every factor has possible values
