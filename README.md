@@ -42,7 +42,7 @@ var matrix = builder
                 .Build();
 ```
 
-builder.Build() produces an `IEnumerable <NamedCondition>` object that forms a result list for the display mode that can be used to generate Display Modes for ASP.NET MVC. 
+builder.Build() produces an computed `IEnumerable<DisplayModeProfile>` collection can be used to generate Display Modes for ASP.NET MVC. 
 
 Please see DisplayModeMatrix.Web in [~/App_Start/DisplayModeConfig.cs](DisplayModeMatrix.Web/App_Start/DisplayModeConfig.cs)
 
