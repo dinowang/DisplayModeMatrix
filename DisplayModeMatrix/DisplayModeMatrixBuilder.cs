@@ -69,7 +69,7 @@ namespace DisplayModeMatrix
 
             public List<NamedCondition> NamedConditions = new List<NamedCondition>();
 
-            public LayerBuilder(int weight)
+            internal LayerBuilder(int weight)
             {
                 _weight = weight;
             }

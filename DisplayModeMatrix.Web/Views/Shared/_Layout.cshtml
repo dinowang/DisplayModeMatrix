@@ -26,12 +26,22 @@
                     <li>@Html.ActionLink("連絡方式", "Contact", "Home")</li>
                     <li>@Html.ActionLink("Toogle theme", "ToogleTheme", "Home")</li>
                     <li>@Html.ActionLink("Toogle preview", "TooglePreview", "Home")</li>
+                    <li>Cookie info: @(Request.Cookies["Theme"]?.Value), @(Request.Cookies["Preview"]?.Value)</li>
+                    <li>@ViewContext.DisplayMode.DisplayModeId</li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
+        <hr/>
+        <b>Available Display Modes</b>
+        <ul>
+            @foreach (var mode in DisplayModeProvider.Instance.Modes.Where(x => x.CanHandleContext(new HttpContextWrapper(HttpContext.Current))))
+            {
+                <li>@mode.DisplayModeId</li>
+            }
+        </ul>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 應用程式</p>
