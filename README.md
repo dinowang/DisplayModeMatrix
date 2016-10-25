@@ -26,7 +26,17 @@ var matrix = builder
 
 builder.Build() 產生一個 IEnumerable<NamedCondition> 物件，為顯示模式組成結果表，可用以生成 Display Modes，於 ASP.NET MVC 中使用請詳見 DisplayModeMatrix.Web 中 ~/App_Start/DisplayModeConfig.cs
 
-### 組合及順序
+```csharp
+foreach (var composition in matrix)
+{
+    instance.Modes.Add(new DefaultDisplayMode(composition.Name)
+    {
+        ContextCondition = x => composition.Expression.Compile().Invoke(x)
+    });
+}
+```
+
+### Display Modes 組合及順序
 
 - Mobile-Dark-Preview
 - Tablet-Dark-Preview
