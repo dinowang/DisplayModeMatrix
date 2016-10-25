@@ -35,7 +35,7 @@ The string of combination used to match Display Modes mechanism.
 
 ### Views structure
 
-So you can organize MVC View (.cshtml) with Display Modes more flexible.
+With combinatability. So you can organize MVC View (.cshtml) with Display Modes more flexible.
 
 ![Views structure](screenshot/views-structure.png)
 
