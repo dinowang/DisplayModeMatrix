@@ -1,10 +1,10 @@
 # DisplayModeMatrix
 
-DisplayModeMatrix 用來擴充單一維度 ASP.NET MVC Display Modes 下的複式組合可能性
+DisplayModeMatrix is used to extend the compoundability of a single dimension ASP.NET MVC Display Modes.
 
 ## Example
 
-### 多重可選維度
+### Multiple optional dimensions
 
 - **Device**, optional :  
   Mobile | Tablet | Default (empty suffix)
@@ -15,7 +15,7 @@ DisplayModeMatrix 用來擴充單一維度 ASP.NET MVC Display Modes 下的複�
 - **Preview**, optional :  
   Preview | No Preview (empty suffix)
 
-### 預期產生的組合及順序
+### Expected combination and sequence
 
 - Mobile-Dark-Preview
 - Tablet-Dark-Preview
@@ -30,7 +30,7 @@ DisplayModeMatrix 用來擴充單一維度 ASP.NET MVC Display Modes 下的複�
 - Dark
 - Preview
 
-### 使用 DisplayModeMatrixBuilder 建立 Display Modes 模式列表
+### Use the DisplayModeMatrixBuilder to create a list of Display Modes
 
 ```csharp
 var builder = new DisplayModeMatrixBuilder();
@@ -42,7 +42,9 @@ var matrix = builder
                 .Build();
 ```
 
-builder.Build() 產生一個 `IEnumerable<NamedCondition>` 物件，為顯示模式組成結果表，可用以生成 Display Modes，於 ASP.NET MVC 中使用請詳見 DisplayModeMatrix.Web 中 [~/App_Start/DisplayModeConfig.cs](DisplayModeMatrix.Web/App_Start/DisplayModeConfig.cs)
+builder.Build() produces an `IEnumerable <NamedCondition>` object that forms a result list for the display mode that can be used to generate Display Modes for ASP.NET MVC. 
+
+Please see DisplayModeMatrix.Web in [~/App_Start/DisplayModeConfig.cs](DisplayModeMatrix.Web/App_Start/DisplayModeConfig.cs)
 
 ```csharp
 foreach (var profile in matrix)
