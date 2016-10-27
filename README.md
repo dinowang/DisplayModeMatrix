@@ -8,14 +8,11 @@ Inspired from Android, see [How Android Finds the Best-matching Resource](https:
 
 ### Given a multiple optional factors, every factor has possible values
 
-- **Device**, optional :  
-  Mobile | Tablet | Default (empty suffix)
-
-- **Theme**, optional :  
-  Dark | Default (empty suffix)
-
-- **Preview**, optional :  
-  Preview | No Preview (empty suffix)
+|         Factors        |                       Values                        |
+|------------------------|-----------------------------------------------------|
+| **Device** (optional)  | *Mobile* | *Tablet* | *Default* (empty suffix)      |
+| **Theme** (optional)   | *Dark* | *Default* (empty suffix)                   |
+| **Preview** (optional) | *Preview* | *No Preview *(empty suffix)             |
 
 ### Expected factor combination and sequencing result
 
