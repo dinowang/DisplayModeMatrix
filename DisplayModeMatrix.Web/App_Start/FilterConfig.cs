@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace DisplayModeMatrix.Web
+namespace Hexdigits.DisplayModeMatrix.Web
 {
     public class FilterConfig
     {

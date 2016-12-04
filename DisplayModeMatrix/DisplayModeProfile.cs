@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web;
 
-namespace DisplayModeMatrix
+namespace Hexdigits.DisplayModeMatrix
 {
     public class DisplayModeProfile
     {

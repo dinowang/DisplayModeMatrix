@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace DisplayModeMatrix
+namespace Hexdigits.DisplayModeMatrix
 {
     public class Factor
     {

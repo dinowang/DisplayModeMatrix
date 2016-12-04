@@ -2,7 +2,7 @@
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DisplayModeMatrix.Test
+namespace Hexdigits.DisplayModeMatrix.Test
 {
     [TestClass]
     public class DisplayModeMatrixBuilderUnitTest

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace DisplayModeMatrix.Web
+namespace Hexdigits.DisplayModeMatrix.Web
 {
     public class BundleConfig
     {

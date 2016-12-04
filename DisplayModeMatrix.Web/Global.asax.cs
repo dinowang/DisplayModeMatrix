@@ -7,7 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.WebPages;
 
-namespace DisplayModeMatrix.Web
+namespace Hexdigits.DisplayModeMatrix.Web
 {
     public class MvcApplication : System.Web.HttpApplication
     {

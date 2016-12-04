@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace DisplayModeMatrix.Web.Controllers
+namespace Hexdigits.DisplayModeMatrix.Web.Controllers
 {
     public class HomeController : Controller
     {

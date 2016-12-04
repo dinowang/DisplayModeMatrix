@@ -4,11 +4,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 
-namespace DisplayModeMatrix
+namespace Hexdigits.DisplayModeMatrix
 {
-    public static class IEnumerableFactorExtensions
+    internal static class IEnumerableFactorExtensions
     {
-        public static IEnumerable<Evidence> Permutation(this IEnumerable<Factor> source)
+        internal static IEnumerable<Evidence> Permutation(this IEnumerable<Factor> source)
         {
             var layer = source.First();
             var nextLayers = source.Skip(1);

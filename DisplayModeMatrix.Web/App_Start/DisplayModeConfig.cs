@@ -5,12 +5,68 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.WebPages;
 
-namespace DisplayModeMatrix.Web
+namespace Hexdigits.DisplayModeMatrix.Web
 {
     public class DisplayModeConfig
     {
         public static void Register(DisplayModeProvider instance)
         {
+            //instance.Modes.Add(new DefaultDisplayMode("Mobile-Dark-Preview")
+            //{
+            //    ContextCondition = x => IsMobile(x) && CurrentTheme(x) == "dark" && IsPreview(x)
+            //});
+
+            //instance.Modes.Add(new DefaultDisplayMode("Tablet-Dark-Preview")
+            //{
+            //    ContextCondition = x => IsTablet(x) && CurrentTheme(x) == "dark" && IsPreview(x)
+            //});
+
+            //instance.Modes.Add(new DefaultDisplayMode("Mobile-Dark")
+            //{
+            //    ContextCondition = x => IsMobile(x) && CurrentTheme(x) == "dark"
+            //});
+
+            //instance.Modes.Add(new DefaultDisplayMode("Tablet-Dark")
+            //{
+            //    ContextCondition = x => IsTablet(x) && CurrentTheme(x) == "dark"
+            //});
+
+            //instance.Modes.Add(new DefaultDisplayMode("Dark-Preview")
+            //{
+            //    ContextCondition = x => CurrentTheme(x) == "dark" && IsPreview(x)
+            //});
+
+            //instance.Modes.Add(new DefaultDisplayMode("Mobile-Preview")
+            //{
+            //    ContextCondition = x => IsMobile(x) && IsPreview(x)
+            //});
+
+            //instance.Modes.Add(new DefaultDisplayMode("Tablet-Preview")
+            //{
+            //    ContextCondition = x => IsTablet(x) && IsPreview(x)
+            //});
+
+            //instance.Modes.Add(new DefaultDisplayMode("Mobile")
+            //{
+            //    ContextCondition = x => IsMobile(x)
+            //});
+
+            //instance.Modes.Add(new DefaultDisplayMode("Tablet")
+            //{
+            //    ContextCondition = x => IsTablet(x)
+            //});
+
+            //instance.Modes.Add(new DefaultDisplayMode("Dark")
+            //{
+            //    ContextCondition = x => CurrentTheme(x) == "dark"
+            //});
+
+            //instance.Modes.Add(new DefaultDisplayMode("Preview")
+            //{
+            //    ContextCondition = x => IsPreview(x)
+            //});
+
+
             var builder = new DisplayModeMatrixBuilder();
 
             var matrix = builder

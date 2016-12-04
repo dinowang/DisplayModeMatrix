@@ -7,8 +7,8 @@
     <ProjectGuid>{E5B68F4E-7B76-4E3C-99C0-73AFB4C45314}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DisplayModeMatrix</RootNamespace>
-    <AssemblyName>DisplayModeMatrix</AssemblyName>
+    <RootNamespace>Hexdigits.DisplayModeMatrix</RootNamespace>
+    <AssemblyName>Hexdigits.DisplayModeMatrix</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DisplayModeMatrixBuilder.cs" />
+    <Compile Include="FactorBuilder.cs" />
     <Compile Include="DisplayModeProfile.cs" />
     <Compile Include="Factor.cs" />
     <Compile Include="IEnumerableFactorExtensions.cs" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Web;
 
-namespace DisplayModeMatrix
+namespace Hexdigits.DisplayModeMatrix
 {
     public class Evidence : IEquatable<Evidence>
     {
@@ -15,10 +15,8 @@ namespace DisplayModeMatrix
 
         public override string ToString() => $"{Name}, {Weight}: {Expression}";
 
-        public bool Equals(Evidence another) 
-            => Name == another.Name;
+        public bool Equals(Evidence another) => Name == another.Name;
 
-        public override int GetHashCode() 
-            => Name.GetHashCode();
+        public override int GetHashCode() => Name.GetHashCode();
     }
 }
