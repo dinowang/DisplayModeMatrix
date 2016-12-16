@@ -4,15 +4,65 @@ DisplayModeMatrix is used to extend the compoundability of a single dimension AS
 
 Inspired from Android, see [How Android Finds the Best-matching Resource](https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch)
 
+## Idea
+
+The developer could use ASP.NET MVC Display Modes to separate view for the different scenario.
+
+A usually case study is Desktop and Mobile view separation.
+
+While running into View. We expect the web represent views from that scenario. 
+
+```
+Index.cshtml  
+Index.Mobile.cshtml  
+```
+
+Desktop runs Index.cshtml, mobile runs Index.Mobile.cshtml.
+
+It needs a Display Modes registration to achieve.
+
+```
+DisplayModeProvider.Instance.Modes.Insert(0, new DefaultDisplayMode("Mobile")
+{
+    ContextCondition = (context => context.IsMobile())    
+});
+```
+
+Display Modes is simple and easier to use.
+
+But sometimes, We need more flexible Display Modes configuration. And Display Modes is just one dimension friendly. Or else you hard code much registration while application startup.
+
+We need segments in suffix for complicated usage. You may found some articles teach implement IDisplayMode interface to achieve that.
+
+It just much more complicated.
+
+A basic idea is to assemble suffix from parts, and concat with a hyphen.
+
+```
+Index.{Devices}-{Preview}.cshtml
+```
+
+Each part has individual symbol and evaluation rule (expression).
+
+- `{Device}` substitute with "Mobile", if HttpContext.Current.IsMobile()  
+- `{Preview}` substitute with "Preview", if specified cookie existed  
+
+Any part could be optional. If it is not satisfied just leave it a blank.
+
+Useless hyphen will never generated.
+
+And a builder pattern helps the developer to compute compositions.
+
+
 ## Example
 
 ### Given a multiple optional factors, every factor has possible values
 
-|         Factors        |                       Values                      |
-|------------------------|---------------------------------------------------|
-| **Device** (optional)  | *Mobile*, *Tablet*, *Default* (empty suffix)      |
-| **Theme** (optional)   | *Dark*, *Default* (empty suffix)                  |
-| **Preview** (optional) | *Preview*, *No Preview* (empty suffix)            |
+|         Factors         |                       Values                      |
+|-------------------------|---------------------------------------------------|
+| **Device** (optional)   | *Mobile*, *Tablet*, *Default* (empty suffix)      |
+| **Theme** (optional)    | *Dark*, *Default* (empty suffix)                  |
+| **Preview** (optional)  | *Preview*, *No Preview* (empty suffix)            |
 
 ### Expected factor combination and sequencing result
 
