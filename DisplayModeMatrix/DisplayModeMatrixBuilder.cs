@@ -1,12 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Web;
 
 namespace Hexdigits.DisplayModeMatrix
 {
     public partial class DisplayModeMatrixBuilder
     {
         private List<Factor> _factors = new List<Factor>();
+
+        private Expression<Func<HttpContextBase, bool>> _precondition = null;
+
+        public DisplayModeMatrixBuilder Precondition(Expression<Func<HttpContextBase, bool>> precondition)
+        {
+            if (_precondition != null)
+            {
+                throw new InvalidOperationException("precondition already existed.");
+            }
+
+            _precondition = precondition;
+
+            return this;
+        }
 
         public DisplayModeMatrixBuilder AddOptionalFactor(string name, Action<FactorBuilder> register)
         {
@@ -54,10 +70,25 @@ namespace Hexdigits.DisplayModeMatrix
                         .Where(x => x != null)
                         .OrderByDescending(x => x.Weight)
                         .Distinct()
-                        .Select(x => new DisplayModeProfile
+                        .Select(x =>
                         {
-                            Name = x.Name,
-                            ContextCondition = x.Expression.Compile()
+                            var expression = x.Expression;
+
+                            if (_precondition != null)
+                            {
+                                var parameter = Expression.Parameter(typeof(HttpContextBase), "x");
+                                var body = Expression.AndAlso(
+                                                Expression.Invoke(_precondition, parameter),
+                                                Expression.Invoke(x.Expression, parameter));
+
+                                expression = Expression.Lambda<Func<HttpContextBase, bool>>(body, parameter);
+                            }
+
+                            return new DisplayModeProfile
+                            {
+                                Name = x.Name,
+                                ContextCondition = expression.Compile()
+                            };
                         });
         }
     }
