@@ -2,19 +2,19 @@
 
 *閱讀其他語言版本: [English](README.en-us.md), [正體中文](README.md).*
 
-DisplayModeMatrix 用來擴展 ASP.NET MVC Display Modes 預設預設的單一維度，提供可延展的組合性。  
+DisplayModeMatrix 用來擴展 ASP.NET MVC Display Modes 預設的單一維度，提供可延展的組合性。  
 
-此機制由 Android 所啟發, 詳可參考 [How Android Finds the Best-matching Resource](https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch)  
+此機制由 Android 所啟發，詳可參考 [How Android Finds the Best-matching Resource](https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch)  
 
-有了多維度的 Display Modes，你可以：
+多維度的 Display Modes 很多好處，你可以：
 
-- 提供很棒的視圖 A/B testing 機制
-- 在多租戶應用程式中非常容易的方式提供客製化報表格式
+- 提供簡潔乾淨的 View A/B testing 機制
+- 在多租戶應用程式中以最簡單的方式提供報表客製化格式
 - 多組 Display Modes 同時工作
 
 ## 基本想法
 
-開發者運用 ASP.NET MVC Display Modes 將 View 在不同情境下分為多個版本。 
+開發者運用 ASP.NET MVC Display Modes 這項技術將 View 在不同情境下分為多個版本。 
  
 常見的例子是區分出桌面版與行動版的 View。  
 
@@ -27,7 +27,7 @@ Index.Mobile.cshtml
 
 桌面版執行 Index.cshtml，行動版本執行 Index.Mobile.cshtml。
 
-這需要以標準的 Display Modes 註冊程序，使得 ASP.NET MVC 能夠進行 View 的情境分離。
+這需要以標準的 Display Modes 註冊程序，使 ASP.NET MVC 能夠依實際情況執行不同版本的 View。
 
 ```
 DisplayModeProvider.Instance.Modes.Insert(0, new DefaultDisplayMode("Mobile")
@@ -36,10 +36,11 @@ DisplayModeProvider.Instance.Modes.Insert(0, new DefaultDisplayMode("Mobile")
 });
 ```
 
-以上是簡要的 Display Modes 機制敘述，相當簡單易用。
+以上是簡要的 Display Modes 機制敘述，該機制相當簡單易用。
 
-如上，因為 Display Modes 預設為單一維度的設計，有時我們需要更加彈性的 Display Modes 組態方式，否則 Display Modes 組態方式會變得非常難以撰寫或維護。
-有些解決方案或許可由實作 IDisplayMode 介面來達成，但實作起來稍微複雜。
+如上，因為 Display Modes 預設為單一維度的設計 ("Mobile")，有時我們需要更加彈性的 Display Modes 組態方式，否則 Display Modes 的組態方式會變得非常難以撰寫或維護。
+
+有些解決方案或許可由實作 IDisplayMode 介面來達成，但實作起來稍微複雜，也難以重用。  
 
 我的想法是將 suffix 轉變為多段組合而成，並以 "-" 連結號串起。
 
@@ -47,16 +48,16 @@ DisplayModeProvider.Instance.Modes.Insert(0, new DefaultDisplayMode("Mobile")
 Index.{Devices}-{Preview}.cshtml
 ```
 
-每一個部分擁有獨立的 *符號* 以及 *運算式 (expression)* 構成
+每一個部分擁有獨立的 *情境* 以及 *運算式 (expression)* 構成
 
-- `{Device}` 置換為 "Mobile", 如果 HttpContext.Current.IsMobile() 成立
-- `{Preview}` 置換為 "Preview", 如果特定的 cookie 存在於請求標頭上  
+- `{Device}` 將置換為 `Mobile`，如果 HttpContext.Current.IsMobile() 成立
+- `{Preview}` 將置換為 `Preview`，如果特定的 cookie 存在於請求標頭上  
 
-任何一個部分可為選擇性存在，如果該部分沒有滿足情境，那就留白。
+任何一個部分可為選擇性的存在，如果該部分沒有滿足，那就預設留白。
 
 沒有意義的連接符號不會成為構成 suffix 的元素(頭、尾、重複的)。
 
-然後以 Builder pattern 協助計算出 Display Modes 的組合性。
+然後以 Builder pattern 協助計算出 Display Modes 的組合性，用以註冊 Display Modes。
 
 ## 如何使用
 
