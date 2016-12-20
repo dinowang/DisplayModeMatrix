@@ -1,30 +1,28 @@
 # DisplayModeMatrix
 
-DisplayModeMatrix is used to extend the compoundability of a single dimension ASP.NET MVC Display Modes.
+*閱讀其他語言版本: [English](README.en-us.md), [正體中文](README.md).*
 
-Inspired from Android, see [How Android Finds the Best-matching Resource](https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch)
+DisplayModeMatrix 用來擴展 ASP.NET MVC Display Modes 預設預設的單一維度，提供可延展的組合性。
+此機制由 Android 所啟發, 詳可參考 [How Android Finds the Best-matching Resource](https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch)
+有了多維度的 Display Modes，你可以：
 
-With multiple DisplayMode dimensions, you can:
+- 提供很棒的視圖 A/B testing 機制
+- 在多租戶應用程式中非常容易的方式提供客製化報表格式
+- 多組 Display Modes 同時工作
 
-- Provide good views A/B testing approach 
-- Not only Mobile/Tablet/Desktop can leverage DisplayModes
+## 基本想法
 
-## Basic idea
-
-The developer could use ASP.NET MVC Display Modes to separate view for the different scenario.
-
-A usually case study is Desktop and Mobile view separation.
-
-While running into View. We expect the web represent views from that scenario. 
+開發者運用 ASP.NET MVC Display Modes 將 View 在不同情境下分為多個版本。
+常見的例子是區分出桌面版與行動版的 View。
+當應用程式執行 View 之前我們希望根據情境顯示以下適合的 View。
 
 ```
 Index.cshtml  
 Index.Mobile.cshtml  
 ```
 
-Desktop runs Index.cshtml, mobile runs Index.Mobile.cshtml.
-
-It needs a Display Modes registration to achieve.
+桌面版執行 Index.cshtml，行動版本執行 Index.Mobile.cshtml。
+這需要以標準的 Display Modes 註冊程序，使得 ASP.NET MVC 能夠進行 View 的情境分離。
 
 ```
 DisplayModeProvider.Instance.Modes.Insert(0, new DefaultDisplayMode("Mobile")
@@ -33,42 +31,39 @@ DisplayModeProvider.Instance.Modes.Insert(0, new DefaultDisplayMode("Mobile")
 });
 ```
 
-Display Modes is simple and easier to use.
+以上是簡要的 Display Modes 機制敘述，相當簡單易用。
 
-But sometimes, We need more flexible Display Modes configuration. And Display Modes is just one dimension friendly. Or else you hard code much registration while application startup.
+如上，因為 Display Modes 預設為單一維度的設計，有時我們需要更加彈性的 Display Modes 組態方式，否則 Display Modes 組態方式會變得非常難以撰寫或維護。
+有些解決方案或許可由實作 IDisplayMode 介面來達成，但實作起來稍微複雜。
 
-We need segments in suffix for complicated usage. You may found some articles teach implement IDisplayMode interface to achieve that.
-
-It just much more complicated.
-
-A basic idea is to assemble suffix from parts, and concat with a hyphen.
+我的想法是將 suffix 轉變為多段組合而成，並以 "-" 連結號串起。
 
 ```
 Index.{Devices}-{Preview}.cshtml
 ```
 
-Each part has individual symbol and evaluation rule (expression).
+每一個部分擁有獨立的 *符號* 以及 *運算式 (expression)* 構成
 
-- `{Device}` substitute with "Mobile", if HttpContext.Current.IsMobile()  
-- `{Preview}` substitute with "Preview", if specified cookie existed  
+- `{Device}` 置換為 "Mobile", 如果 HttpContext.Current.IsMobile() 成立
+- `{Preview}` 置換為 "Preview", 如果特定的 cookie 存在於請求標頭上  
 
-Any part could be optional. If it is not satisfied just leave it a blank.
+任何一個部分可為選擇性存在，如果該部分沒有滿足情境，那就留白。
 
-Useless hyphen will never generated.
+沒有意義的連接符號不會成為構成 suffix 的元素(頭、尾、重複的)。
 
-And a builder pattern helps the developer to compute compositions.
+然後以 Builder pattern 協助計算出 Display Modes 的組合性。
 
-## How to use
+## 如何使用
 
-### Given a multiple optional factors, every factor has possible values
+### 假設三組可選擇性的維度，每一個維度以及可能的值如下表
 
-|         Factors         |                       Values                      |
+|           維度          |                       可能值                       |
 |-------------------------|---------------------------------------------------|
-| **Device** (optional)   | *Mobile*, *Tablet*, *Default* (empty suffix)      |
-| **Theme** (optional)    | *Dark*, *Default* (empty suffix)                  |
-| **Preview** (optional)  | *Preview*, *No Preview* (empty suffix)            |
+| **Device** (可選)       | *Mobile*, *Tablet*, *Default* (空值)               |
+| **Theme** (可選)       | *Dark*, *Default* (空值)                            |
+| **Preview** (可選)     | *Preview*, *No Preview* (空值)                      |
 
-### Expected factor combination and sequencing result
+### 預期產生的 suffix 組合以及正確順序
 
 - Mobile-Dark-Preview
 - Tablet-Dark-Preview
@@ -82,15 +77,15 @@ And a builder pattern helps the developer to compute compositions.
 - Dark
 - Preview
 
-The string of combination used to match Display Modes mechanism.
+這些 suffix 將應用於標準 Display Modes 的組態機制中.
 
-### Views structure
+### Views 的結構
 
-With combinatability. So you can organize MVC View (.cshtml) with Display Modes more flexible.
+有了多維度的可能性，現在你可以更加有彈性的 Display Modes 組織 View。
 
 ![Views structure](screenshot/views-structure.png)
 
-### Use the DisplayModeMatrixBuilder to create a list of Display Modes
+### 使用 DisplayModeMatrixBuilder 建立一系列的 Display Modes
 
 ```csharp
 var builder = new DisplayModeMatrixBuilder();
@@ -102,9 +97,9 @@ var matrix = builder
                 .Build();
 ```
 
-builder.Build() produces an computed `IEnumerable<DisplayModeProfile>` collection can be used to generate Display Modes for ASP.NET MVC. 
+builder.Build() 可生成一組 `IEnumerable<DisplayModeProfile>` 集合能用來註冊 Display Modes。 
 
-Please see DisplayModeMatrix.Web in [~/App_Start/DisplayModeConfig.cs](DisplayModeMatrix.Web/App_Start/DisplayModeConfig.cs)
+註冊方式如下，完整的範例請參考 DisplayModeMatrix.Web 專案的 [~/App_Start/DisplayModeConfig.cs](DisplayModeMatrix.Web/App_Start/DisplayModeConfig.cs)
 
 ```csharp
 foreach (var profile in matrix)
@@ -116,17 +111,13 @@ foreach (var profile in matrix)
 }
 ```
 
-### Benchmarking
+### 效能測試
 
-[SuperBenchmarker](https://github.com/aliostad/SuperBenchmarker) (-n 1000 -c 10)
+使用 [SuperBenchmarker](https://github.com/aliostad/SuperBenchmarker) (-n 1000 -c 10)
 
-|                     | Apply DisplayModeMatrixBuilder |     Without Display Modes     |
+|                     | 運用 DisplayModeMatrix         |    完全不使用 Display Modes    |
 |---------------------|--------------------------------|-------------------------------|
 | TPS                 | 133.2 (requests/second)        | 135.3 (requests/second)       |
 | Max                 | 6018.8998ms                    | 6160.7143ms                   |
 | Min                 | 2.4041ms                       | 2.3731ms                      |
 | Avg                 | 67.8596257ms                   | 67.777162ms                   |
-
-## TODO:
-
-- Support ASP.NET Core 
