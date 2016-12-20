@@ -4,6 +4,11 @@ DisplayModeMatrix is used to extend the compoundability of a single dimension AS
 
 Inspired from Android, see [How Android Finds the Best-matching Resource](https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch)
 
+With multiple DisplayMode dimensions, you can:
+
+- Provide good views A/B testing approach 
+- Not only Mobile/Tablet/Desktop can leverage DisplayModes
+
 ## Basic idea
 
 The developer could use ASP.NET MVC Display Modes to separate view for the different scenario.
