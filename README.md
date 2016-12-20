@@ -97,13 +97,21 @@ Index.{Devices}-{Preview}.cshtml
 var builder = new DisplayModeMatrixBuilder();
 
 var matrix = builder
-                .AddOptionalFactor("Device", l => l.Evidence("Mobile", x => IsMobile(x)).Evidence("Tablet", x => IsTablet(x)))
-                .AddOptionalFactor("Theme", l => l.Evidence("Dark", x => CurrentTheme(x) == "dark"))
-                .AddOptionalFactor("Preview", l => l.Evidence("Preview", x => IsPreview(x)))
+                .AddOptionalFactor("Device", 
+                                   l => l.Evidence("Mobile", x => IsMobile(x))
+                                         .Evidence("Tablet", x => IsTablet(x)))
+                .AddOptionalFactor("Theme", 
+                                   l => l.Evidence("Dark", x => CurrentTheme(x) == "dark"))
+                .AddOptionalFactor("Preview", 
+                                   l => l.Evidence("Preview", x => IsPreview(x)))
                 .Build();
 ```
 
 builder.Build() 可生成一組 `IEnumerable<DisplayModeProfile>` 集合能用來註冊 Display Modes。 
+
+DisplayModeMatrixBuilder 實例提供以下公開方法操作
+
+
 
 註冊方式如下，完整的範例請參考 DisplayModeMatrix.Web 專案的 [~/App_Start/DisplayModeConfig.cs](DisplayModeMatrix.Web/App_Start/DisplayModeConfig.cs)
 

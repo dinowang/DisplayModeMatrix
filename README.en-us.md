@@ -99,9 +99,13 @@ With combinatability. So you can organize MVC View (.cshtml) with Display Modes 
 var builder = new DisplayModeMatrixBuilder();
 
 var matrix = builder
-                .AddOptionalFactor("Device", l => l.Evidence("Mobile", x => IsMobile(x)).Evidence("Tablet", x => IsTablet(x)))
-                .AddOptionalFactor("Theme", l => l.Evidence("Dark", x => CurrentTheme(x) == "dark"))
-                .AddOptionalFactor("Preview", l => l.Evidence("Preview", x => IsPreview(x)))
+                .AddOptionalFactor("Device", 
+                                   l => l.Evidence("Mobile", x => IsMobile(x))
+                                         .Evidence("Tablet", x => IsTablet(x)))
+                .AddOptionalFactor("Theme", 
+                                   l => l.Evidence("Dark", x => CurrentTheme(x) == "dark"))
+                .AddOptionalFactor("Preview", 
+                                   l => l.Evidence("Preview", x => IsPreview(x)))
                 .Build();
 ```
 
