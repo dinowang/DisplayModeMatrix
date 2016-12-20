@@ -2,8 +2,10 @@
 
 *¾\Åª¨ä¥L»y¨¥ª©¥»: [English](README.en-us.md), [¥¿Åé¤¤¤å](README.md).*
 
-DisplayModeMatrix ¥Î¨ÓÂX®i ASP.NET MVC Display Modes ¹w³]¹w³]ªº³æ¤@ºû«×¡A´£¨Ñ¥i©µ®iªº²Õ¦X©Ê¡C
-¦¹¾÷¨î¥Ñ Android ©Ò±Òµo, ¸Ô¥i°Ñ¦Ò [How Android Finds the Best-matching Resource](https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch)
+DisplayModeMatrix ¥Î¨ÓÂX®i ASP.NET MVC Display Modes ¹w³]¹w³]ªº³æ¤@ºû«×¡A´£¨Ñ¥i©µ®iªº²Õ¦X©Ê¡C  
+
+¦¹¾÷¨î¥Ñ Android ©Ò±Òµo, ¸Ô¥i°Ñ¦Ò [How Android Finds the Best-matching Resource](https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch)  
+
 ¦³¤F¦hºû«×ªº Display Modes¡A§A¥i¥H¡G
 
 - ´£¨Ñ«Ü´Îªºµø¹Ï A/B testing ¾÷¨î
@@ -12,8 +14,10 @@ DisplayModeMatrix ¥Î¨ÓÂX®i ASP.NET MVC Display Modes ¹w³]¹w³]ªº³æ¤@ºû«×¡A´£¨Ñ¥i©
 
 ## °ò¥»·Qªk
 
-¶}µoªÌ¹B¥Î ASP.NET MVC Display Modes ±N View ¦b¤£¦P±¡¹Ò¤U¤À¬°¦h­Óª©¥»¡C
-±`¨£ªº¨Ò¤l¬O°Ï¤À¥X®à­±ª©»P¦æ°Êª©ªº View¡C
+¶}µoªÌ¹B¥Î ASP.NET MVC Display Modes ±N View ¦b¤£¦P±¡¹Ò¤U¤À¬°¦h­Óª©¥»¡C 
+ 
+±`¨£ªº¨Ò¤l¬O°Ï¤À¥X®à­±ª©»P¦æ°Êª©ªº View¡C  
+
 ·íÀ³¥Îµ{¦¡°õ¦æ View ¤§«e§Ú­Ì§Æ±æ®Ú¾Ú±¡¹ÒÅã¥Ü¥H¤U¾A¦Xªº View¡C
 
 ```
@@ -22,6 +26,7 @@ Index.Mobile.cshtml
 ```
 
 ®à­±ª©°õ¦æ Index.cshtml¡A¦æ°Êª©¥»°õ¦æ Index.Mobile.cshtml¡C
+
 ³o»Ý­n¥H¼Ð·Çªº Display Modes µù¥Uµ{§Ç¡A¨Ï±o ASP.NET MVC ¯à°÷¶i¦æ View ªº±¡¹Ò¤ÀÂ÷¡C
 
 ```

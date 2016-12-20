@@ -3,6 +3,7 @@
 *Read this in other languages: [English](README.en-us.md), [Chinese](README.md).*
 
 DisplayModeMatrix is used to extend the compoundability of a single dimension ASP.NET MVC Display Modes.
+
 Inspired from Android, see [How Android Finds the Best-matching Resource](https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch)
 
 With multiple DisplayMode dimensions, you can:
@@ -14,7 +15,9 @@ With multiple DisplayMode dimensions, you can:
 ## Basic idea
 
 The developer could use ASP.NET MVC Display Modes to separate view for the different scenario.
+
 A usually case study is Desktop and Mobile view separation.
+
 While running into View. We expect the web represent views from that scenario. 
 
 ```
