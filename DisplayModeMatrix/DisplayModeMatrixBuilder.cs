@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
+using Hexdigits.DisplayModeMatrix.Strategies;
 
 namespace Hexdigits.DisplayModeMatrix
 {
     public partial class DisplayModeMatrixBuilder
     {
         private List<Factor> _factors = new List<Factor>();
+
+        public EvaluateBehavior EvaluateBehavior { get; private set; }
 
         private Expression<Func<HttpContextBase, bool>> _precondition = null;
 
@@ -20,6 +23,13 @@ namespace Hexdigits.DisplayModeMatrix
             }
 
             _precondition = precondition;
+
+            return this;
+        }
+
+        public DisplayModeMatrixBuilder SetEvaluateBehavior(EvaluateBehavior behavior)
+        {
+            EvaluateBehavior = behavior;
 
             return this;
         }
@@ -65,8 +75,12 @@ namespace Hexdigits.DisplayModeMatrix
                 weight--;
             }
 
+            var strategy = EvaluateStrategyFactory.Create(EvaluateBehavior);
+
+            var sequence = 0;
+
             return _factors
-                        .Permutation()
+                        .Permutation(strategy)
                         .Where(x => x != null)
                         .OrderByDescending(x => x.Weight)
                         .Distinct()
@@ -74,14 +88,20 @@ namespace Hexdigits.DisplayModeMatrix
                         {
                             var expression = x.Expression;
 
+                            var parameter = Expression.Parameter(typeof(HttpContextBase), "x");
+
                             if (_precondition != null)
                             {
-                                var parameter = Expression.Parameter(typeof(HttpContextBase), "x");
                                 var body = Expression.AndAlso(
                                                 Expression.Invoke(_precondition, parameter),
                                                 Expression.Invoke(x.Expression, parameter));
 
                                 expression = Expression.Lambda<Func<HttpContextBase, bool>>(body, parameter);
+                            }
+
+                            if (sequence++ == 0)
+                            {
+                                expression = strategy.InitializePadding(expression, parameter);
                             }
 
                             return new DisplayModeProfile

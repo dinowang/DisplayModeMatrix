@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EvaluateBehavior.cs" />
+    <Compile Include="Strategies\CalculationCaching.cs" />
     <Compile Include="DisplayModeMatrixBuilder.cs" />
     <Compile Include="FactorBuilder.cs" />
     <Compile Include="DisplayModeProfile.cs" />
@@ -49,6 +51,10 @@
     <Compile Include="IEnumerableFactorExtensions.cs" />
     <Compile Include="Evidence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Strategies\EvaluateStrategyFactory.cs" />
+    <Compile Include="Strategies\IExpressionEvaluationStrategy.cs" />
+    <Compile Include="Strategies\LazyStrategy.cs" />
+    <Compile Include="Strategies\NormalStrategy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

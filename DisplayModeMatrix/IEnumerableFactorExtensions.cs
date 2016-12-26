@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
+using Hexdigits.DisplayModeMatrix.Strategies;
 
 namespace Hexdigits.DisplayModeMatrix
 {
     internal static class IEnumerableFactorExtensions
     {
-        internal static IEnumerable<Evidence> Permutation(this IEnumerable<Factor> source)
+        internal static IEnumerable<Evidence> Permutation(this IEnumerable<Factor> source, IEvaluationStrategy strategy)
         {
             var layer = source.First();
             var nextLayers = source.Skip(1);
@@ -17,7 +18,7 @@ namespace Hexdigits.DisplayModeMatrix
             {
                 foreach (var set in layer.Values)
                 {
-                    foreach (var childSet in nextLayers.Permutation())
+                    foreach (var childSet in nextLayers.Permutation(strategy))
                     {
                         if (childSet == null)
                         {
@@ -26,9 +27,7 @@ namespace Hexdigits.DisplayModeMatrix
                         else
                         {
                             var parameter = Expression.Parameter(typeof(HttpContextBase), "x");
-                            var body = Expression.AndAlso(
-                                            Expression.Invoke(set.Expression, parameter), 
-                                            Expression.Invoke(childSet.Expression, parameter));
+                            var body = strategy.Combine(set.Expression, childSet.Expression, parameter);
 
                             yield return new Evidence
                             {
@@ -40,7 +39,7 @@ namespace Hexdigits.DisplayModeMatrix
                     }
                     if (layer.Required == false)
                     {
-                        foreach (var x in nextLayers.Permutation())
+                        foreach (var x in nextLayers.Permutation(strategy))
                         {
                             yield return x;
                         }

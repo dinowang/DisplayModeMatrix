@@ -71,9 +71,15 @@ namespace Hexdigits.DisplayModeMatrix.Web
 
             var matrix = builder
                             //.Precondition(x => false)
-                            .AddOptionalFactor("Device", l => l.Evidence("Mobile", x => IsMobile(x)).Evidence("Tablet", x => IsTablet(x)))
-                            .AddOptionalFactor("Theme", l => l.Evidence("Dark", x => CurrentTheme(x) == "dark"))
-                            .AddOptionalFactor("Preview", l => l.Evidence("Preview", x => IsPreview(x)))
+                            .SetEvaluateBehavior(EvaluateBehavior.Lazy)
+                            .AddOptionalFactor("Device", l => l
+                                     .Evidence("Tablet", x => IsTablet(x))
+                                     .Evidence("Mobile", x => IsMobile(x)))
+                            .AddOptionalFactor("Theme", l => l
+                                     .Evidence("Dark", x => CurrentTheme(x) == "dark")
+                                     .Evidence("Light", x => CurrentTheme(x) == "light"))
+                            .AddOptionalFactor("Preview", l => l
+                                     .Evidence("Preview", x => IsPreview(x)))
                             .Build();
             
             instance.Modes.Clear();
@@ -93,7 +99,7 @@ namespace Hexdigits.DisplayModeMatrix.Web
             => x.GetOverriddenBrowser().IsMobileDevice;
 
         public static bool IsTablet(HttpContextBase x) 
-            => Regex.IsMatch(x.GetOverriddenUserAgent(), "iPad|Tablet", RegexOptions.IgnoreCase);
+            => Regex.IsMatch(x.GetOverriddenUserAgent() ?? "", "iPad|Tablet", RegexOptions.IgnoreCase);
 
         public static string CurrentTheme(HttpContextBase x) 
             => x.Request.Cookies.AllKeys.Contains("Theme") ? x.Request.Cookies["Theme"].Value : string.Empty;
