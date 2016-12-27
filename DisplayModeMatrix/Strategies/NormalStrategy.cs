@@ -15,13 +15,9 @@ namespace Hexdigits.DisplayModeMatrix.Strategies
             return expression;
         }
 
-        public Expression Combine(Expression left, Expression right, ParameterExpression parameter)
+        public Expression<Func<HttpContextBase, bool>> WarpExpression(Expression<Func<HttpContextBase, bool>> expression, ParameterExpression parameter)
         {
-            var body = Expression.AndAlso(
-                            Expression.Invoke(left, parameter),
-                            Expression.Invoke(right, parameter));
-
-            return body;
+            return expression;
         }
     }
 }

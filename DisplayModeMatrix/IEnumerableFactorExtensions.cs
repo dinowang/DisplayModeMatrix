@@ -27,7 +27,10 @@ namespace Hexdigits.DisplayModeMatrix
                         else
                         {
                             var parameter = Expression.Parameter(typeof(HttpContextBase), "x");
-                            var body = strategy.Combine(set.Expression, childSet.Expression, parameter);
+
+                            var body = Expression.AndAlso(
+                                            Expression.Invoke(set.Expression, parameter),
+                                            Expression.Invoke(childSet.Expression, parameter));
 
                             yield return new Evidence
                             {

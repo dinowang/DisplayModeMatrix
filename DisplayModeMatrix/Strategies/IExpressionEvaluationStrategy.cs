@@ -8,6 +8,6 @@ namespace Hexdigits.DisplayModeMatrix.Strategies
     {
         Expression<Func<HttpContextBase, bool>> InitializePadding(Expression<Func<HttpContextBase, bool>> expression, ParameterExpression parameter);
 
-        Expression Combine(Expression left, Expression right, ParameterExpression parameter);
+        Expression<Func<HttpContextBase, bool>> WarpExpression(Expression<Func<HttpContextBase, bool>> expression, ParameterExpression parameter);
     }
 }

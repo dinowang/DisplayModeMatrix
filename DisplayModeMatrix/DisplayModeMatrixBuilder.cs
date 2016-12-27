@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -65,17 +66,18 @@ namespace Hexdigits.DisplayModeMatrix
         public IEnumerable<DisplayModeProfile> Build()
         {
             var weight = _factors.Count;
+            var strategy = EvaluateStrategyFactory.Create(EvaluateBehavior);
+            var parameter = Expression.Parameter(typeof(HttpContextBase), "x");
 
             foreach (var factor in _factors)
             {
                 foreach (var value in factor.Values)
                 {
                     value.Weight = weight;
+                    value.Expression = strategy.WarpExpression(value.Expression, parameter);
                 }
                 weight--;
             }
-
-            var strategy = EvaluateStrategyFactory.Create(EvaluateBehavior);
 
             var sequence = 0;
 
@@ -87,8 +89,6 @@ namespace Hexdigits.DisplayModeMatrix
                         .Select(x =>
                         {
                             var expression = x.Expression;
-
-                            var parameter = Expression.Parameter(typeof(HttpContextBase), "x");
 
                             if (_precondition != null)
                             {
@@ -103,6 +103,8 @@ namespace Hexdigits.DisplayModeMatrix
                             {
                                 expression = strategy.InitializePadding(expression, parameter);
                             }
+
+                            Debug.WriteLine($"{x.Name}, {expression.Reduce()}");
 
                             return new DisplayModeProfile
                             {

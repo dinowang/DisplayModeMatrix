@@ -71,7 +71,7 @@ namespace Hexdigits.DisplayModeMatrix.Web
 
             var matrix = builder
                             //.Precondition(x => false)
-                            .SetEvaluateBehavior(EvaluateBehavior.Lazy)
+                            //.SetEvaluateBehavior(EvaluateBehavior.Lazy)
                             .AddOptionalFactor("Device", l => l
                                      .Evidence("Tablet", x => IsTablet(x))
                                      .Evidence("Mobile", x => IsMobile(x)))

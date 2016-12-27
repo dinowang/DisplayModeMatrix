@@ -19,16 +19,15 @@ namespace Hexdigits.DisplayModeMatrix.Strategies
             }
 
             var dict = CacheData;
+            var httpContextBase = new HttpContextWrapper(HttpContext.Current);
 
             foreach (var template in Templates)
             {
-                dict[template.Key] = new Lazy<bool>(() => template.Value(CurrentHttpContextBase));
+                dict[template.Key] = new Lazy<bool>(() => template.Value(httpContextBase));
             }
 
             return true;
         }
-
-        public static HttpContextBase CurrentHttpContextBase => new HttpContextWrapper(HttpContext.Current);
 
         public static Dictionary<Expression, Func<HttpContextBase, bool>> Templates = new Dictionary<Expression, Func<HttpContextBase, bool>>();
 
