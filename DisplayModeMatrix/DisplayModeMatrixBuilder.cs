@@ -93,7 +93,7 @@ namespace Hexdigits.DisplayModeMatrix
                             if (_precondition != null)
                             {
                                 var body = Expression.AndAlso(
-                                                Expression.Invoke(_precondition, parameter),
+                                                Expression.Invoke(strategy.WarpExpression(_precondition, parameter), parameter),
                                                 Expression.Invoke(x.Expression, parameter));
 
                                 expression = Expression.Lambda<Func<HttpContextBase, bool>>(body, parameter);
