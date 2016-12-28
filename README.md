@@ -1,33 +1,36 @@
 # DisplayModeMatrix
 
-*¾\Åª¨ä¥L»y¨¥ª©¥»: [English](README.en-us.md), [¥¿Åé¤¤¤å](README.md).*
+![License](https://img.shields.io/github/license/dinowang/DisplayModeMatrix.svg)
+![Version](https://img.shields.io/nuget/v/DisplayModeMatrix.svg)
 
-DisplayModeMatrix ¥Î¨ÓÂX®i ASP.NET MVC Display Modes ¹w³]ªº³æ¤@ºû«×¡A´£¨Ñ¥i©µ®iªº²Õ¦X©Ê¡C  
+*é–±è®€å…¶ä»–èªè¨€ç‰ˆæœ¬: [English](README.en-us.md), [æ­£é«”ä¸­æ–‡](README.md).*
 
-¦¹¾÷¨î¥Ñ Android ©Ò±Òµo¡A¸Ô¥i°Ñ¦Ò [How Android Finds the Best-matching Resource](https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch)  
+DisplayModeMatrix ç”¨ä¾†æ“´å±• ASP.NET MVC Display Modes é è¨­çš„å–®ä¸€ç¶­åº¦ï¼Œæä¾›å¯å»¶å±•çš„çµ„åˆæ€§ã€‚  
 
-¦hºû«×ªº Display Modes «Ü¦h¦n³B¡A§A¥i¥H¡G
+æ­¤æ©Ÿåˆ¶ç”± Android æ‰€å•Ÿç™¼ï¼Œè©³å¯åƒè€ƒ [How Android Finds the Best-matching Resource](https://developer.android.com/guide/topics/resources/providing-resources.html#BestMatch)  
 
-- ´£¨ÑÂ²¼ä°®²bªº View A/B testing ¾÷¨î
-- ¦b¦h¯²¤áÀ³¥Îµ{¦¡¤¤¥H³ÌÂ²³æªº¤è¦¡´£¨Ñ³øªí«È»s¤Æ®æ¦¡
-- ¦h²Õ Display Modes ¦P®É¤u§@
+å¤šç¶­åº¦çš„ Display Modes å¾ˆå¤šå¥½è™•ï¼Œä½ å¯ä»¥ï¼š
 
-## °ò¥»·Qªk
+- æä¾›ç°¡æ½”ä¹¾æ·¨çš„ View A/B testing æ©Ÿåˆ¶
+- åœ¨å¤šç§Ÿæˆ¶æ‡‰ç”¨ç¨‹å¼ä¸­ä»¥æœ€ç°¡å–®çš„æ–¹å¼æä¾›å ±è¡¨å®¢è£½åŒ–æ ¼å¼
+- å¤šçµ„ Display Modes åŒæ™‚å·¥ä½œ
 
-¶}µoªÌ¹B¥Î ASP.NET MVC Display Modes ³o¶µ§Ş³N±N View ¦b¤£¦P±¡¹Ò¤U¤À¬°¦h­Óª©¥»¡C 
+## åŸºæœ¬æƒ³æ³•
+
+é–‹ç™¼è€…é‹ç”¨ ASP.NET MVC Display Modes é€™é …æŠ€è¡“å°‡ View åœ¨ä¸åŒæƒ…å¢ƒä¸‹åˆ†ç‚ºå¤šå€‹ç‰ˆæœ¬ã€‚ 
  
-±`¨£ªº¨Ò¤l¬O°Ï¤À¥X®à­±ª©»P¦æ°Êª©ªº View¡C  
+å¸¸è¦‹çš„ä¾‹å­æ˜¯å€åˆ†å‡ºæ¡Œé¢ç‰ˆèˆ‡è¡Œå‹•ç‰ˆçš„ Viewã€‚  
 
-·íÀ³¥Îµ{¦¡°õ¦æ View ¤§«e§Ú­Ì§Æ±æ®Ú¾Ú±¡¹ÒÅã¥Ü¥H¤U¾A¦Xªº View¡C
+ç•¶æ‡‰ç”¨ç¨‹å¼åŸ·è¡Œ View ä¹‹å‰æˆ‘å€‘å¸Œæœ›æ ¹æ“šæƒ…å¢ƒé¡¯ç¤ºä»¥ä¸‹é©åˆçš„ Viewã€‚
 
 ```
 Index.cshtml  
 Index.Mobile.cshtml  
 ```
 
-®à­±ª©°õ¦æ Index.cshtml¡A¦æ°Êª©¥»°õ¦æ Index.Mobile.cshtml¡C
+æ¡Œé¢ç‰ˆåŸ·è¡Œ Index.cshtmlï¼Œè¡Œå‹•ç‰ˆæœ¬åŸ·è¡Œ Index.Mobile.cshtmlã€‚
 
-³o»İ­n¥H¼Ğ·Çªº Display Modes µù¥Uµ{§Ç¡A¨Ï ASP.NET MVC ¯à°÷¨Ì¹ê»Ú±¡ªp°õ¦æ¤£¦Pª©¥»ªº View¡C
+é€™éœ€è¦ä»¥æ¨™æº–çš„ Display Modes è¨»å†Šç¨‹åºï¼Œä½¿ ASP.NET MVC èƒ½å¤ ä¾å¯¦éš›æƒ…æ³åŸ·è¡Œä¸åŒç‰ˆæœ¬çš„ Viewã€‚
 
 ```
 DisplayModeProvider.Instance.Modes.Insert(0, new DefaultDisplayMode("Mobile")
@@ -36,40 +39,40 @@ DisplayModeProvider.Instance.Modes.Insert(0, new DefaultDisplayMode("Mobile")
 });
 ```
 
-¥H¤W¬OÂ²­nªº Display Modes ¾÷¨î±Ô­z¡A¸Ó¾÷¨î¬Û·íÂ²³æ©ö¥Î¡C
+ä»¥ä¸Šæ˜¯ç°¡è¦çš„ Display Modes æ©Ÿåˆ¶æ•˜è¿°ï¼Œè©²æ©Ÿåˆ¶ç›¸ç•¶ç°¡å–®æ˜“ç”¨ã€‚
 
-¦p¤W¡A¦]¬° Display Modes ¹w³]¬°³æ¤@ºû«×ªº³]­p ("Mobile")¡A¦³®É§Ú­Ì»İ­n§ó¥[¼u©Êªº Display Modes ²ÕºA¤è¦¡¡A§_«h Display Modes ªº²ÕºA¤è¦¡·|ÅÜ±o«D±`Ãø¥H¼¶¼g©ÎºûÅ@¡C
+å¦‚ä¸Šï¼Œå› ç‚º Display Modes é è¨­ç‚ºå–®ä¸€ç¶­åº¦çš„è¨­è¨ˆ ("Mobile")ï¼Œæœ‰æ™‚æˆ‘å€‘éœ€è¦æ›´åŠ å½ˆæ€§çš„ Display Modes çµ„æ…‹æ–¹å¼ï¼Œå¦å‰‡ Display Modes çš„çµ„æ…‹æ–¹å¼æœƒè®Šå¾—éå¸¸é›£ä»¥æ’°å¯«æˆ–ç¶­è­·ã€‚
 
-¦³¨Ç¸Ñ¨M¤è®×©Î³\¥i¥Ñ¹ê§@ IDisplayMode ¤¶­±¨Ó¹F¦¨¡A¦ı¹ê§@°_¨Óµy·L½ÆÂø¡A¤]Ãø¥H­«¥Î¡C  
+æœ‰äº›è§£æ±ºæ–¹æ¡ˆæˆ–è¨±å¯ç”±å¯¦ä½œ IDisplayMode ä»‹é¢ä¾†é”æˆï¼Œä½†å¯¦ä½œèµ·ä¾†ç¨å¾®è¤‡é›œï¼Œä¹Ÿé›£ä»¥é‡ç”¨ã€‚  
 
-§Úªº·Qªk¬O±N suffix ÂàÅÜ¬°¦h¬q²Õ¦X¦Ó¦¨¡A¨Ã¥H "-" ³sµ²¸¹¦ê°_¡C
+æˆ‘çš„æƒ³æ³•æ˜¯å°‡ suffix è½‰è®Šç‚ºå¤šæ®µçµ„åˆè€Œæˆï¼Œä¸¦ä»¥ "-" é€£çµè™Ÿä¸²èµ·ã€‚
 
 ```
 Index.{Devices}-{Preview}.cshtml
 ```
 
-¨C¤@­Ó³¡¤À¾Ö¦³¿W¥ßªº *±¡¹Ò* ¥H¤Î *¹Bºâ¦¡ (expression)* ºc¦¨
+æ¯ä¸€å€‹éƒ¨åˆ†æ“æœ‰ç¨ç«‹çš„ *æƒ…å¢ƒ* ä»¥åŠ *é‹ç®—å¼ (expression)* æ§‹æˆ
 
-- `{Device}` ±N¸m´«¬° `Mobile`¡A¦pªG HttpContext.Current.IsMobile() ¦¨¥ß
-- `{Preview}` ±N¸m´«¬° `Preview`¡A¦pªG¯S©wªº cookie ¦s¦b©ó½Ğ¨D¼ĞÀY¤W  
+- `{Device}` å°‡ç½®æ›ç‚º `Mobile`ï¼Œå¦‚æœ HttpContext.Current.IsMobile() æˆç«‹
+- `{Preview}` å°‡ç½®æ›ç‚º `Preview`ï¼Œå¦‚æœç‰¹å®šçš„ cookie å­˜åœ¨æ–¼è«‹æ±‚æ¨™é ­ä¸Š  
 
-¥ô¦ó¤@­Ó³¡¤À¥i¬°¿ï¾Ü©Êªº¦s¦b¡A¦pªG¸Ó³¡¤À¨S¦³º¡¨¬¡A¨º´N¹w³]¯d¥Õ¡C
+ä»»ä½•ä¸€å€‹éƒ¨åˆ†å¯ç‚ºé¸æ“‡æ€§çš„å­˜åœ¨ï¼Œå¦‚æœè©²éƒ¨åˆ†æ²’æœ‰æ»¿è¶³ï¼Œé‚£å°±é è¨­ç•™ç™½ã€‚
 
-¨S¦³·N¸qªº³s±µ²Å¸¹¤£·|¦¨¬°ºc¦¨ suffix ªº¤¸¯À(ÀY¡B§À¡B­«½Æªº)¡C
+æ²’æœ‰æ„ç¾©çš„é€£æ¥ç¬¦è™Ÿä¸æœƒæˆç‚ºæ§‹æˆ suffix çš„å…ƒç´ (é ­ã€å°¾ã€é‡è¤‡çš„)ã€‚
 
-µM«á¥H Builder pattern ¨ó§U­pºâ¥X Display Modes ªº²Õ¦X©Ê¡A¥Î¥Hµù¥U Display Modes¡C
+ç„¶å¾Œä»¥ Builder pattern å”åŠ©è¨ˆç®—å‡º Display Modes çš„çµ„åˆæ€§ï¼Œç”¨ä»¥è¨»å†Š Display Modesã€‚
 
-## ¦p¦ó¨Ï¥Î
+## å¦‚ä½•ä½¿ç”¨
 
-### °²³]¤T²Õ¥i¿ï¾Ü©Êªººû«×¡A¨C¤@­Óºû«×¥H¤Î¥i¯àªº­È¦p¤Uªí
+### å‡è¨­ä¸‰çµ„å¯é¸æ“‡æ€§çš„ç¶­åº¦ï¼Œæ¯ä¸€å€‹ç¶­åº¦ä»¥åŠå¯èƒ½çš„å€¼å¦‚ä¸‹è¡¨
 
-|           ºû«×          |                       ¥i¯à­È                       |
+|           ç¶­åº¦          |                       å¯èƒ½å€¼                       |
 |-------------------------|---------------------------------------------------|
-| **Device** (¥i¿ï)       | *Mobile*, *Tablet*, *Default* (ªÅ­È)               |
-| **Theme** (¥i¿ï)       | *Dark*, *Default* (ªÅ­È)                            |
-| **Preview** (¥i¿ï)     | *Preview*, *No Preview* (ªÅ­È)                      |
+| **Device** (å¯é¸)       | *Mobile*, *Tablet*, *Default* (ç©ºå€¼)               |
+| **Theme** (å¯é¸)       | *Dark*, *Default* (ç©ºå€¼)                            |
+| **Preview** (å¯é¸)     | *Preview*, *No Preview* (ç©ºå€¼)                      |
 
-### ¹w´Á²£¥Íªº suffix ²Õ¦X¥H¤Î¥¿½T¶¶§Ç
+### é æœŸç”¢ç”Ÿçš„ suffix çµ„åˆä»¥åŠæ­£ç¢ºé †åº
 
 - Mobile-Dark-Preview
 - Tablet-Dark-Preview
@@ -83,15 +86,15 @@ Index.{Devices}-{Preview}.cshtml
 - Dark
 - Preview
 
-³o¨Ç suffix ±NÀ³¥Î©ó¼Ğ·Ç Display Modes ªº²ÕºA¾÷¨î¤¤.
+é€™äº› suffix å°‡æ‡‰ç”¨æ–¼æ¨™æº– Display Modes çš„çµ„æ…‹æ©Ÿåˆ¶ä¸­.
 
-### Views ªºµ²ºc
+### Views çš„çµæ§‹
 
-¦³¤F¦hºû«×ªº¥i¯à©Ê¡A²{¦b§A¥i¥H§ó¥[¦³¼u©Êªº Display Modes ²ÕÂ´ View¡C
+æœ‰äº†å¤šç¶­åº¦çš„å¯èƒ½æ€§ï¼Œç¾åœ¨ä½ å¯ä»¥æ›´åŠ æœ‰å½ˆæ€§çš„ Display Modes çµ„ç¹” Viewã€‚
 
 ![Views structure](screenshot/views-structure.png)
 
-### ¨Ï¥Î DisplayModeMatrixBuilder «Ø¥ß¤@¨t¦Cªº Display Modes
+### ä½¿ç”¨ DisplayModeMatrixBuilder å»ºç«‹ä¸€ç³»åˆ—çš„ Display Modes
 
 ```csharp
 var builder = new DisplayModeMatrixBuilder();
@@ -107,13 +110,13 @@ var matrix = builder
                 .Build();
 ```
 
-builder.Build() ¥i¥Í¦¨¤@²Õ `IEnumerable<DisplayModeProfile>` ¶°¦X¯à¥Î¨Óµù¥U Display Modes¡C 
+builder.Build() å¯ç”Ÿæˆä¸€çµ„ `IEnumerable<DisplayModeProfile>` é›†åˆèƒ½ç”¨ä¾†è¨»å†Š Display Modesã€‚ 
 
-DisplayModeMatrixBuilder ¹ê¨Ò´£¨Ñ¥H¤U¤½¶}¤èªk¾Ş§@
+DisplayModeMatrixBuilder å¯¦ä¾‹æä¾›ä»¥ä¸‹å…¬é–‹æ–¹æ³•æ“ä½œ
 
 
 
-µù¥U¤è¦¡¦p¤U¡A§¹¾ãªº½d¨Ò½Ğ°Ñ¦Ò DisplayModeMatrix.Web ±M®×ªº [~/App_Start/DisplayModeConfig.cs](DisplayModeMatrix.Web/App_Start/DisplayModeConfig.cs)
+è¨»å†Šæ–¹å¼å¦‚ä¸‹ï¼Œå®Œæ•´çš„ç¯„ä¾‹è«‹åƒè€ƒ DisplayModeMatrix.Web å°ˆæ¡ˆçš„ [~/App_Start/DisplayModeConfig.cs](DisplayModeMatrix.Web/App_Start/DisplayModeConfig.cs)
 
 ```csharp
 foreach (var profile in matrix)
@@ -125,11 +128,11 @@ foreach (var profile in matrix)
 }
 ```
 
-### ®Ä¯à´ú¸Õ
+### æ•ˆèƒ½æ¸¬è©¦
 
-¨Ï¥Î [SuperBenchmarker](https://github.com/aliostad/SuperBenchmarker) (-n 1000 -c 10)
+ä½¿ç”¨ [SuperBenchmarker](https://github.com/aliostad/SuperBenchmarker) (-n 1000 -c 10)
 
-|                     | ¹B¥Î DisplayModeMatrix         |    §¹¥ş¤£¨Ï¥Î Display Modes    |
+|                     | é‹ç”¨ DisplayModeMatrix         |    å®Œå…¨ä¸ä½¿ç”¨ Display Modes    |
 |---------------------|--------------------------------|-------------------------------|
 | TPS                 | 133.2 (requests/second)        | 135.3 (requests/second)       |
 | Max                 | 6018.8998ms                    | 6160.7143ms                   |
