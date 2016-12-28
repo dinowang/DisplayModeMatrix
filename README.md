@@ -2,7 +2,7 @@
 
 ![License](https://img.shields.io/github/license/dinowang/DisplayModeMatrix.svg)
 ![Version](https://img.shields.io/nuget/v/DisplayModeMatrix.svg)
-[![Analytics](https://ga-beacon.appspot.com/UA-89527437-1/DisplayModeMatrix)](https://github.com/igrigorik/ga-beacon)
+[![Analytics](https://ga-beacon.appspot.com/UA-89527437-1/DisplayModeMatrix?flat)](https://github.com/igrigorik/ga-beacon)
 
 *閱讀其他語言版本: [English](README.en-us.md), [正體中文](README.md).*
 
